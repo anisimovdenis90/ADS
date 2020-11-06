@@ -1,6 +1,6 @@
 package com.anisimov.denis.ads.HomeWork3;
 
-public interface LinkedList<E> {
+public interface LinkedList<E> extends Iterable<E> {
 
     /**
      * O(1)
@@ -30,6 +30,9 @@ public interface LinkedList<E> {
     boolean contains(E value);
 
     int size();
+
+    Node<E> firstElement();
+    void setFirstElement(Node<E> node);
 
     boolean isEmpty();
 

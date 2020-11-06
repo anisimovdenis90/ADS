@@ -3,28 +3,38 @@ package com.anisimov.denis.ads.HomeWork3;
 import com.anisimov.denis.ads.HomeWork2.myqueue.Queue;
 import com.anisimov.denis.ads.HomeWork2.mystack.Stack;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Test {
 
     public static void main(String[] args) {
 //        testLinkedList();
 //        testStack();
 //        testQueue();
-        testForEach();
+//        testForEach();
+        testLinkIterator();
+    }
+
+    private static void testLinkIterator() {
+        LinkedList<Integer> list = new SimpleLinkedListImpl<>();
+        LinkIterator<Integer> itr = new LinkIterator<>(list);
+
+        itr.insertAfter(1);
+        itr.insertAfter(2);
+        itr.insertBefore(3);
+        list.display();
+
+        itr.insertAfter(5);
+        list.display();
+        System.out.println(itr.getCurrent());
+
+        itr.deleteCurrent();
+        System.out.println(itr.getCurrent());
+
+        itr.nextLink();
+        System.out.println(itr.getCurrent());
+
     }
 
     private static void testForEach() {
-        List<Integer> arrayList = new ArrayList<>();
-        arrayList.add(1);
-        arrayList.add(2);
-        arrayList.add(3);
-        arrayList.add(4);
-
-        for (Integer integer : arrayList) {
-            System.out.println(integer);
-        }
 
         LinkedList<Integer> linkedList = new SimpleLinkedListImpl<>();
         linkedList.insertFirst(1);
@@ -32,11 +42,9 @@ public class Test {
         linkedList.insertFirst(3);
         linkedList.insertFirst(4);
 
-        linkedList.display();
-
-//        for(Integer value: linkedList) {
-//            System.out.println(value);
-//        }
+        for(Integer value: linkedList) {
+            System.out.println(value);
+        }
     }
 
     private static void testLinkedList() {
