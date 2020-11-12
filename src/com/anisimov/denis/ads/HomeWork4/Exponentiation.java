@@ -8,7 +8,10 @@ public class Exponentiation {
     }
 
     public static double doExponentiation(int value, int degree) {
-        if (degree > 0) {
+        if (value == 0 ) {
+            return 0;
+        }
+        if (degree >= 0) {
             return exponentiation(value, degree);
         }
         return 1 / exponentiation(value, Math.abs(degree));
@@ -17,6 +20,9 @@ public class Exponentiation {
     private static double exponentiation(int value, int degree) {
         if (degree == 0) {
             return 1;
+        }
+        if (degree == 1) {
+            return value;
         }
         return value * exponentiation(value, degree - 1);
     }
