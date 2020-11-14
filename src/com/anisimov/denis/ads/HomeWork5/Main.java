@@ -8,16 +8,16 @@ public class Main {
     private static final int MAX_LEVEL = 4;
     private static final int MAX_LEVEL2 = 6;
 
-    private static final int maxRandom = 25;
-    private static final int minRandom = -25;
-    private static final int maxRandom2 = 100;
-    private static final int minRandom2 = -100;
+    private static final int MAX_RANDOM = 25;
+    private static final int MIN_RANDOM = -25;
+    private static final int MAX_RANDOM_2 = 100;
+    private static final int MIN_RANDOM_2 = -100;
 
     public static void main(String[] args) {
 //        testTree();
 //        testRemovedElement();
-        calculatePercentOfUnbalancedTrees(MAX_TREES, MAX_LEVEL, maxRandom, minRandom);
-        calculatePercentOfUnbalancedTrees(MAX_TREES, MAX_LEVEL2, maxRandom2, minRandom2);
+        calculatePercentOfUnbalancedTrees(MAX_TREES, MAX_LEVEL, MAX_RANDOM, MIN_RANDOM);
+        calculatePercentOfUnbalancedTrees(MAX_TREES, MAX_LEVEL2, MAX_RANDOM_2, MIN_RANDOM_2);
     }
 
     private static void calculatePercentOfUnbalancedTrees(int maxTrees, int maxLevel, int maxRandom, int minRandom) {
