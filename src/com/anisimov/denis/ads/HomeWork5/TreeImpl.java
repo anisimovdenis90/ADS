@@ -15,6 +15,9 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E> {
     }
 
     public TreeImpl(int maxLevel) {
+        if (maxLevel < 0) {
+             throw new IllegalArgumentException("Max level is lower then zero: " + maxLevel);
+        }
         this.maxLevel = maxLevel;
     }
 
@@ -36,7 +39,7 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E> {
             return false;
         }
 
-        if (parent != null && parent.getLevel() < maxLevel) {
+        if (parent != null && parent.getLevel() < maxLevel && maxLevel > 0) {
             parent.addChild(newNode);
             size++;
             return true;
