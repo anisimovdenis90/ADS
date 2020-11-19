@@ -61,8 +61,15 @@ public class Graph {
 
     public void getBestPath(String startLabel, String stopLabel) {
         int startIndex = indexOf(startLabel);
+        int stopIndex = 0;
+        if (stopLabel != null) {
+            stopIndex = indexOf(stopLabel);
+        }
         if (startIndex == -1) {
-            throw new IllegalArgumentException("Invalid label");
+            throw new IllegalArgumentException("Invalid start label " + startLabel);
+        }
+        if (stopIndex == -1) {
+            throw new IllegalArgumentException("Invalid stop label " + stopLabel);
         }
         Queue<Vertex> queue = new LinkedList<>();
 
