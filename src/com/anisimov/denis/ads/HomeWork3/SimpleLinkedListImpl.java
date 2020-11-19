@@ -1,5 +1,8 @@
 package com.anisimov.denis.ads.HomeWork3;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class SimpleLinkedListImpl<E> implements LinkedList<E> {
 
     protected int size;
@@ -67,7 +70,18 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E> {
 
     @Override
     public int size() {
-        return 0;
+        return size;
+    }
+
+    @Override
+    public Node<E> firstElement() {
+        return firstElement;
+    }
+
+    @Override
+    public void setFirstElement(Node<E> node) {
+        firstElement = node;
+        size++;
     }
 
     @Override
@@ -79,7 +93,7 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E> {
     public void display() {
         System.out.println("--------------");
         Node<E> current = firstElement;
-        while (current.next != null) {
+        while (current != null) {
             System.out.println(current.item);
             current = current.next;
         }
@@ -89,5 +103,31 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E> {
     @Override
     public E getFirst() {
         return firstElement.item;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+
+            private int cursor;
+            private Node<E> next = firstElement;
+            private Node<E> current;
+
+            @Override
+            public boolean hasNext() {
+                return cursor < size;
+            }
+
+            @Override
+            public E next() {
+                if (isEmpty()) {
+                    throw new NoSuchElementException();
+                }
+                current = next;
+                next = next.next;
+                cursor++;
+                return current.item;
+            }
+        };
     }
 }
