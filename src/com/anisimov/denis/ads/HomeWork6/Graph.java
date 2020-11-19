@@ -36,7 +36,7 @@ public class Graph {
 
     private int indexOf(String vertexLabel) {
         for (int i = 0; i < vertexList.size(); i++) {
-            if (vertexLabel.equals(vertexList.get(i).getLabel())) {
+            if (vertexLabel != null && vertexLabel.equals(vertexList.get(i).getLabel())) {
                 return i;
             }
         }
@@ -59,12 +59,11 @@ public class Graph {
         }
     }
 
-    public void bfs(String startLabel) {
+    public void getBestPath(String startLabel, String stopLabel) {
         int startIndex = indexOf(startLabel);
         if (startIndex == -1) {
-            throw new IllegalArgumentException("Invalid start label");
+            throw new IllegalArgumentException("Invalid label");
         }
-
         Queue<Vertex> queue = new LinkedList<>();
 
         Vertex vertex = vertexList.get(startIndex);
@@ -73,6 +72,11 @@ public class Graph {
         while (!queue.isEmpty()) {
             vertex = getNearUnvisitedVertex(queue.peek());
             if (vertex != null) {
+                vertex.setPrev(queue.peek());
+                if (vertex.getLabel().equals(stopLabel)) {
+                    printPathToFinishedVertex(vertex);
+                    return;
+                }
                 visitVertex(vertex, queue);
             } else {
                 queue.remove();
@@ -80,6 +84,22 @@ public class Graph {
         }
 
         resetVertexState();
+    }
+
+    private void printPathToFinishedVertex(Vertex vertex) {
+        Stack<Vertex> stack = new Stack<>();
+        do {
+            stack.push(vertex);
+        } while ((vertex = vertex.getPrev()) != null);
+        System.out.println("Best path:");
+        System.out.print(stack.pop());
+        while (!stack.isEmpty()) {
+            System.out.print(" -> " + stack.pop());
+        }
+    }
+
+    public void bfs(String startLabel) {
+        getBestPath(startLabel, null);
     }
 
     public void dfs(String startLabel) {
