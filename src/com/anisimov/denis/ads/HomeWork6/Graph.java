@@ -79,12 +79,12 @@ public class Graph {
         while (!queue.isEmpty()) {
             vertex = getNearUnvisitedVertex(queue.peek());
             if (vertex != null) {
+                visitVertex(vertex, queue);
                 vertex.setPrev(queue.peek());
                 if (vertex.getLabel().equals(stopLabel)) {
                     printPathToFinishedVertex(vertex);
                     return;
                 }
-                visitVertex(vertex, queue);
             } else {
                 queue.remove();
             }
