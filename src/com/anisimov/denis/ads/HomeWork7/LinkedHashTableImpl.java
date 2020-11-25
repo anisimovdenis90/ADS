@@ -18,13 +18,11 @@ public class LinkedHashTableImpl<K, V> implements HashTable<K, V> {
     public boolean put(K key, V value) {
         int index = hash(key);
 
-        for (LinkedList<Node<K, V>> nodeLinkedList : data) {
-            if (!nodeLinkedList.isEmpty()) {
-                for (Node<K, V> node : nodeLinkedList) {
-                    if (node.getKey().equals(key)) {
-                        node.setValue(value);
-                        return true;
-                    }
+        if (!data[index].isEmpty()) {
+            for (Node<K, V> node : data[index]) {
+                if (node.getKey().equals(key)) {
+                    node.setValue(value);
+                    return true;
                 }
             }
         }
