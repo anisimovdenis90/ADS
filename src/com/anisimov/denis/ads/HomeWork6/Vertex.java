@@ -6,9 +6,18 @@ public class  Vertex {
 
     private final String label;
     private boolean visited;
+    private Vertex prev;
 
     public Vertex(String label) {
         this.label = label;
+    }
+
+    public Vertex getPrev() {
+        return prev;
+    }
+
+    public void setPrev(Vertex prev) {
+        this.prev = prev;
     }
 
     public boolean getVisited() {
