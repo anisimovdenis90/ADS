@@ -56,8 +56,8 @@ public class LinkedHashTableImpl<K, V> implements HashTable<K, V> {
     public V remove(K key) {
         int index = hash(key);
 
-        for (int i = 0; i <= data[index].size(); i++) {
-            if (!data[index].isEmpty()) {
+        if (!data[index].isEmpty()) {
+            for (int i = 0; i <= data[index].size(); i++) {
                 if (data[index].get(i).getKey().equals(key)) {
                     V value = data[index].get(i).getValue();
                     data[index].remove(i);
